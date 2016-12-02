@@ -4,10 +4,8 @@ import java.time.format.DateTimeFormatter
 import java.time.{ZoneOffset, ZonedDateTime}
 import java.util.Locale
 
-import akka.actor.ActorSystem
 import akka.http.scaladsl.marshallers.sprayjson.SprayJsonSupport
 import akka.http.scaladsl.model.Uri
-import akka.stream.ActorMaterializer
 import com.azavea.landsatutil.Json._
 import com.typesafe.config.ConfigFactory
 import com.typesafe.scalalogging.LazyLogging
@@ -31,7 +29,6 @@ object Landsat8Query {
 }
 
 class Landsat8Query() extends SprayJsonSupport with LazyLogging {
-
 
   private var _boundsQuery: String = ""
   private var _cloudCoverageMin = 0.0
@@ -142,7 +139,7 @@ class Landsat8Query() extends SprayJsonSupport with LazyLogging {
     }
   }
 
-  def collect(terminateAkka: Boolean = true): Seq[LandsatImage] = {
+  def collect(): Seq[LandsatImage] = {
     implicit val timeout = scala.concurrent.duration.Duration(1000, scala.concurrent.duration.SECONDS)
 
     val termSearch = s"search=$searchTerms"

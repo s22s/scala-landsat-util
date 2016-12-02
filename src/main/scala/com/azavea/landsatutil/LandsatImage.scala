@@ -3,14 +3,14 @@ package com.azavea.landsatutil
 import geotrellis.vector._
 import geotrellis.raster._
 import geotrellis.raster.io.geotiff.reader._
+
 import com.amazonaws.services.s3._
-import com.amazonaws.auth._
 import com.amazonaws.services.s3.model._
 import org.apache.commons.io.IOUtils
 import com.typesafe.scalalogging.LazyLogging
 
 import java.net._
-import java.time.{ZonedDateTime, ZoneOffset}
+import java.time.ZonedDateTime
 
 case class LandsatImage(
   sceneId: String,
